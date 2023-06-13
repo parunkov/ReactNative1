@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View, Pressable } from 'react-native';
 
 type Auto = {
     name: string;
@@ -12,10 +12,15 @@ type GreetingProps = {
 
 export default function ListItem({ auto }: GreetingProps) {
     return (
-        <View style={styles.auto} >
+        <Pressable style={styles.auto} onPress={() => {
+            console.log(3333);
+        }}>
             <Text>{auto.name}</Text>
             <Text>{auto.driver}</Text>
-        </View>
+            {/* <Button title={'Открыть'} onPress={() => {
+                console.log(3333);                
+            }}></Button> */}
+        </Pressable>
     );
 }
 
