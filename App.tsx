@@ -13,39 +13,73 @@ type Auto = {
 
 const autoData: Auto[] = data;
 
-const onFilterPress = () => {
-  console.log(5555);
-
-};
-
 export default function App() {
+  const [isFilterVisible, setFilterVisible] = useState(false);
+  const [filter, setFilter] = useState(['Грузовой', 'Пассажирский', 'Спецтранспорт']);
+
   // useEffect(() => {
   //   console.log(2222);
   // });
 
   const [isChecked, setChecked] = useState(false);
 
+  const onFilterPress = () => {
+    console.log(5555);
+    setFilterVisible(true);
+  };
+
+  const onFilterApplyPress = () => {
+    console.log(7777);
+    setFilterVisible(false);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.title}>
         <Text style={styles.titleText}>Список ТС</Text>
       </View>
-      <View style={styles.button}>
-        <Button title={'Фильтр'} onPress={onFilterPress} />
-      </View>
-      <View style={styles.section}>
-        <Checkbox
-          style={styles.checkbox}
-          value={isChecked}
-          onValueChange={setChecked}
-          color={isChecked ? '#4630EB' : undefined}
-        />
-        <Text style={styles.paragraph}>Грузовой</Text>
-      </View>
-      <StatusBar style="auto" />
+      {!isFilterVisible &&
+        <View style={styles.button}>
+          <Button title={'Фильтр'} onPress={onFilterPress} />
+        </View>
+      }
+      {isFilterVisible &&
+        <View>
+          <View style={styles.section}>
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setChecked}
+              color={isChecked ? '#4630EB' : undefined}
+            />
+            <Text style={styles.paragraph}>Грузовой</Text>
+          </View>
+          <View style={styles.section}>
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setChecked}
+              color={isChecked ? '#4630EB' : undefined}
+            />
+            <Text style={styles.paragraph}>Пассажирский</Text>
+          </View>
+          <View style={styles.section}>
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setChecked}
+              color={isChecked ? '#4630EB' : undefined}
+            />
+            <Text style={styles.paragraph}>Спецтранспорт</Text>
+          </View>
+          <View style={styles.button}>
+            <Button title={'Применить'} onPress={onFilterApplyPress} />
+          </View>
+        </View>}
       {autoData.map((item: Auto, key) =>
         <ListItem auto={item} key={key} />
       )}
+      <StatusBar style="auto" />
     </View>
   );
 }
