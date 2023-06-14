@@ -15,13 +15,18 @@ const autoData: Auto[] = data;
 
 export default function App() {
   const [isFilterVisible, setFilterVisible] = useState(false);
-  const [filter, setFilter] = useState(['Грузовой', 'Пассажирский', 'Спецтранспорт']);
+  const [autoFilter, setFilter] = useState({
+    'Грузовой': true,
+    'Пассажирский': true,
+    'Спецтранспорт': true,
+  });
+  const [isCargoChecked, setCargoChecked] = useState(true);
+  const [isPassengerChecked, setPassengerChecked] = useState(true);
+  const [isSpecialChecked, setSpecialChecked] = useState(true);
 
   // useEffect(() => {
   //   console.log(2222);
   // });
-
-  const [isChecked, setChecked] = useState(false);
 
   const onFilterPress = () => {
     console.log(5555);
@@ -44,35 +49,50 @@ export default function App() {
         </View>
       }
       {isFilterVisible &&
-        <View>
+        <View style={styles.filter}>
           <View style={styles.section}>
             <Checkbox
               style={styles.checkbox}
-              value={isChecked}
-              onValueChange={setChecked}
-              color={isChecked ? '#4630EB' : undefined}
+              value={isCargoChecked}
+              onValueChange={(value) => {
+                setCargoChecked(value);
+                console.log(value);
+                autoFilter['Грузовой'] = value;
+                console.log(autoFilter);
+              }}
+              color={isCargoChecked ? '#4630EB' : undefined}
             />
             <Text style={styles.paragraph}>Грузовой</Text>
           </View>
           <View style={styles.section}>
             <Checkbox
               style={styles.checkbox}
-              value={isChecked}
-              onValueChange={setChecked}
-              color={isChecked ? '#4630EB' : undefined}
+              value={isPassengerChecked}
+              onValueChange={(value) => {
+                setPassengerChecked(value);
+                console.log(value);
+                autoFilter['Пассажирский'] = value;
+                console.log(autoFilter);
+              }}
+              color={isPassengerChecked ? '#4630EB' : undefined}
             />
             <Text style={styles.paragraph}>Пассажирский</Text>
           </View>
           <View style={styles.section}>
             <Checkbox
               style={styles.checkbox}
-              value={isChecked}
-              onValueChange={setChecked}
-              color={isChecked ? '#4630EB' : undefined}
+              value={isSpecialChecked}
+              onValueChange={(value) => {
+                setSpecialChecked(value);
+                console.log(value);
+                autoFilter['Спецтранспорт'] = value;
+                console.log(autoFilter);
+              }}
+              color={isSpecialChecked ? '#4630EB' : undefined}
             />
             <Text style={styles.paragraph}>Спецтранспорт</Text>
           </View>
-          <View style={styles.button}>
+          <View style={styles.filterButton}>
             <Button title={'Применить'} onPress={onFilterApplyPress} />
           </View>
         </View>}
@@ -99,8 +119,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700'
   },
+  filter: {
+    width: '90%'
+  },
   button: {
-    marginBottom: 20
+    marginBottom: 20,
+    width: '90%'
+  },
+  filterButton: {
+    marginTop: 10,
+    marginBottom: 20,
+    width: '100%'
   },
   section: {
     flexDirection: 'row',
