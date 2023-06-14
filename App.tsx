@@ -2,9 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import data from './assets/data.json';
-import ListItem from './components/ListItem';
 import Checkbox from 'expo-checkbox';
 import { Auto } from './types/types';
+import ListItem from './components/ListItem';
+import Map from './components/Map';
 
 console.log(data);
 type Filter = {
@@ -95,6 +96,7 @@ export default function App() {
           </View>
         </View>}
       {autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem auto={item} key={key} />)}
+      <Map />
       <StatusBar style="auto" />
     </View>
   );
