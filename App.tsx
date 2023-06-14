@@ -5,7 +5,7 @@ import data from './assets/data.json';
 import Checkbox from 'expo-checkbox';
 import { Auto } from './types/types';
 import ListItem from './components/ListItem';
-import Map from './components/Map';
+// import Map from './components/Map';
 
 console.log(data);
 type Filter = {
@@ -27,6 +27,7 @@ export default function App() {
 
   // useEffect(() => {
   //   console.log(2222);
+
   // });
 
   const onFilterPress = () => {
@@ -96,7 +97,7 @@ export default function App() {
           </View>
         </View>}
       {autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem auto={item} key={key} />)}
-      <Map />
+      {/* <Map /> */}
       <StatusBar style="auto" />
     </View>
   );
