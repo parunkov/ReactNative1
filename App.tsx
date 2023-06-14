@@ -4,18 +4,18 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import data from './assets/data.json';
 import ListItem from './components/ListItem';
 import Checkbox from 'expo-checkbox';
+import { Auto } from './types/types';
 
 console.log(data);
-type Auto = {
-  name: string;
-  driver: string;
-};
+type Filter = {
+  [key: string]: boolean;
+}
 
 const autoData: Auto[] = data;
 
 export default function App() {
   const [isFilterVisible, setFilterVisible] = useState(false);
-  const [autoFilter, setFilter] = useState({
+  const [autoFilter, setFilter] = useState<Filter>({
     'Грузовой': true,
     'Пассажирский': true,
     'Спецтранспорт': true,
@@ -29,12 +29,10 @@ export default function App() {
   // });
 
   const onFilterPress = () => {
-    console.log(5555);
     setFilterVisible(true);
   };
 
   const onFilterApplyPress = () => {
-    console.log(7777);
     setFilterVisible(false);
   }
 
@@ -60,7 +58,7 @@ export default function App() {
                 autoFilter['Грузовой'] = value;
                 console.log(autoFilter);
               }}
-              color={isCargoChecked ? '#4630EB' : undefined}
+              color={isCargoChecked ? 'rgb(33, 150, 243)' : undefined}
             />
             <Text style={styles.paragraph}>Грузовой</Text>
           </View>
@@ -74,7 +72,7 @@ export default function App() {
                 autoFilter['Пассажирский'] = value;
                 console.log(autoFilter);
               }}
-              color={isPassengerChecked ? '#4630EB' : undefined}
+              color={isPassengerChecked ? 'rgb(33, 150, 243)' : undefined}
             />
             <Text style={styles.paragraph}>Пассажирский</Text>
           </View>
@@ -88,7 +86,7 @@ export default function App() {
                 autoFilter['Спецтранспорт'] = value;
                 console.log(autoFilter);
               }}
-              color={isSpecialChecked ? '#4630EB' : undefined}
+              color={isSpecialChecked ? 'rgb(33, 150, 243)' : undefined}
             />
             <Text style={styles.paragraph}>Спецтранспорт</Text>
           </View>
@@ -96,9 +94,7 @@ export default function App() {
             <Button title={'Применить'} onPress={onFilterApplyPress} />
           </View>
         </View>}
-      {autoData.map((item: Auto, key) =>
-        <ListItem auto={item} key={key} />
-      )}
+      {autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem auto={item} key={key} />)}
       <StatusBar style="auto" />
     </View>
   );

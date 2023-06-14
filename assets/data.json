@@ -4,13 +4,23 @@
         "name": "ТС#1",
         "driver": "Сергей",
         "phone": "+79999999999",
-        "category": "Грузовой"
+        "category": "Грузовой",
+        "color": "blue"
     },
     {
         "id": "2",
         "name": "ТС#2",
         "driver": "Иван",
         "phone": "+79999999999",
-        "category": "Пассажирский"
+        "category": "Пассажирский",
+        "color": "red"
+    },
+    {
+        "id": "2",
+        "name": "ТС#3",
+        "driver": "Федор",
+        "phone": "+79999999999",
+        "category": "Спецтранспорт",
+        "color": "green"
     }
 ]
