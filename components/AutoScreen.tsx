@@ -1,10 +1,22 @@
-import { StyleSheet, Text, View, Pressable, Button, Linking } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Button, Linking, Alert } from 'react-native';
 import { Auto, GreetingProps } from '../types/types';
 
 export default function AutoScreen({ auto }: GreetingProps) {
     const onCallPress = () => {
         console.log(auto.phone);
         Linking.openURL(`tel:${auto.phone}`);
+    };
+
+    const sendMsg = () => {
+        const URL = `whatsapp://send?text=Добрый день, подскажите пожалуйста, какой номер заказа у вас сейчас в работе&phone=${auto.phone}`;
+
+        Linking.openURL(URL)
+            .then((data) => {
+                console.log('WhatsApp Opened');
+            })
+            .catch(() => {
+                Alert.alert('Make sure Whatsapp installed on your device');
+            });
     };
 
     return (
@@ -23,7 +35,7 @@ export default function AutoScreen({ auto }: GreetingProps) {
                     <Button title={'Позвонить'} onPress={onCallPress}></Button>
                 </View>
                 <View style={styles.button}>
-                    <Button title={'Написать'}></Button>
+                    <Button title={'Написать'} onPress={sendMsg}></Button>
                 </View>
             </View>
         </View>
