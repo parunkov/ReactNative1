@@ -1,15 +1,13 @@
-import { StyleSheet, Text, View, Pressable, Button, Linking, Alert } from 'react-native';
-import { Auto, AutoProps } from '../types/types';
+import { StyleSheet, Text, View, Button, Linking, Alert } from 'react-native';
+import { Auto, AutoScreenProps } from '../types/types';
+import Map from './Map';
 
-export default function AutoScreen({ auto, key, callback }: AutoProps) {
+export default function AutoScreen({ auto, callback, autoFilter }: AutoScreenProps) {
     const onCallPress = () => {
-        console.log(auto.phone);
         Linking.openURL(`tel:${auto.phone}`);
     };
     const onReturnPress = () => {
         callback();
-        console.log(1111);
-        // console.log(key);
     }
 
     const sendMsg = () => {
@@ -34,9 +32,16 @@ export default function AutoScreen({ auto, key, callback }: AutoProps) {
                     <Text style={styles.titleText}>{auto.name}</Text>
                 </View>
             </View>
-            <View></View>
+            <View style={styles.mapcontainer}>
+                <Map 
+                    autoData={[auto]} 
+                    autoFilter={autoFilter} 
+                    latitude={auto.latitude} 
+                    longitude={auto.longitude} 
+                />
+            </View>
             <View style={styles.container}>
-                <Text>Водитель!!: {auto.driver}</Text>
+                <Text>Водитель: {auto.driver}</Text>
                 <Text>Категория: {auto.category}</Text>
                 <Text>Телефон: {auto.phone}</Text>
                 <View style={styles.button}>
@@ -85,5 +90,9 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 10,
         width: '100%'
+    },
+    mapcontainer: {
+        width: '100%',
+        height: 300,
     },
 });

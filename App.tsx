@@ -51,11 +51,9 @@ export default function App() {
   }
   const onAutoPress = () => {
     setAutoMode(true);
-    // setAuto(key);
   }
   const onReturnPress = () => {
     setAutoMode(false);
-    console.log(77777);
   }
 
   return (
@@ -87,9 +85,7 @@ export default function App() {
                 value={isCargoChecked}
                 onValueChange={(value) => {
                   setCargoChecked(value);
-                  console.log(value);
                   autoFilter['Грузовой'] = value;
-                  console.log(autoFilter);
                 }}
                 color={isCargoChecked ? 'rgb(33, 150, 243)' : undefined}
               />
@@ -101,9 +97,7 @@ export default function App() {
                 value={isPassengerChecked}
                 onValueChange={(value) => {
                   setPassengerChecked(value);
-                  console.log(value);
                   autoFilter['Пассажирский'] = value;
-                  console.log(autoFilter);
                 }}
                 color={isPassengerChecked ? 'rgb(33, 150, 243)' : undefined}
               />
@@ -115,9 +109,7 @@ export default function App() {
                 value={isSpecialChecked}
                 onValueChange={(value) => {
                   setSpecialChecked(value);
-                  console.log(value);
                   autoFilter['Спецтранспорт'] = value;
-                  console.log(autoFilter);
                 }}
                 color={isSpecialChecked ? 'rgb(33, 150, 243)' : undefined}
               />
@@ -136,12 +128,12 @@ export default function App() {
           }}
         />)}
         {isMapMode && <View style={styles.mapcontainer}>
-          <Map autoData={autoData} autoFilter={autoFilter} />
+          <Map autoData={autoData} autoFilter={autoFilter} latitude={55.78} longitude={37.43} />
         </View>
         }
       </View>}
       {isAutoMode && <View style={styles.container}>
-        <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} />
+        <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} autoFilter={autoFilter}/>
       </View>}
       <StatusBar style="auto" />
     </View>

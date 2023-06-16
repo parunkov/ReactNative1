@@ -3,13 +3,13 @@ import { Auto, MapProps, Filter } from '../types/types';
 import MapView, { Marker } from 'react-native-maps';
 
 
-export default function Map({ autoData, autoFilter }: MapProps) {
+export default function Map({ autoData, autoFilter, latitude, longitude }: MapProps) {
     return (
         <MapView
             style={styles.map}
             initialRegion={{
-                latitude: 55.78825,
-                longitude: 37.4324,
+                latitude,
+                longitude,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             }}
