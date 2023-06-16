@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import data from './assets/data.json';
 import Checkbox from 'expo-checkbox';
 import { Auto } from './types/types';
@@ -119,21 +119,25 @@ export default function App() {
               <Button title={'Применить'} onPress={onFilterApplyPress} />
             </View>
           </View>}
-        {!isMapMode && autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem
-          auto={item}
-          key={key}
-          callback={() => {
-            setAuto(key);
-            onAutoPress();
-          }}
-        />)}
+        {!isMapMode &&
+          <ScrollView style={styles.listContainer}>
+            {autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem
+              auto={item}
+              key={key}
+              callback={() => {
+                setAuto(key);
+                onAutoPress();
+              }}
+            />)
+            }
+          </ScrollView>}
         {isMapMode && <View style={styles.mapcontainer}>
           <Map autoData={autoData} autoFilter={autoFilter} latitude={55.78} longitude={37.43} />
         </View>
         }
       </View>}
       {isAutoMode && <View style={styles.container}>
-        <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} autoFilter={autoFilter}/>
+        <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} autoFilter={autoFilter} />
       </View>}
       <StatusBar style="auto" />
     </View>
@@ -143,6 +147,7 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    // overflow: 'visible',
   },
   container: {
     flex: 1,
@@ -201,6 +206,9 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     margin: 8,
+  },
+  listContainer: {
+    width: '90%',
   },
   mapcontainer: {
     width: '100%',

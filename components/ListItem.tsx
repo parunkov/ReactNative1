@@ -3,10 +3,6 @@ import { Auto, AutoProps } from '../types/types';
 
 
 export default function ListItem({ auto, key, callback }: AutoProps) {
-    console.log(callback);
-    
-    console.log(key);
-    
     const onPress = () => {
         console.log(3333);
         console.log(key);
@@ -25,7 +21,7 @@ export default function ListItem({ auto, key, callback }: AutoProps) {
 
 const styles = StyleSheet.create({
     auto: {
-        width: '90%',
+        width: '100%',
         borderColor: 'rgb(33, 150, 243)',
         borderWidth: 1,
         padding: 5,
