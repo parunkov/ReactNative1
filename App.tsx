@@ -5,7 +5,7 @@ import data from './assets/data.json';
 import Checkbox from 'expo-checkbox';
 import { Auto } from './types/types';
 import ListItem from './components/ListItem';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import AutoScreen from './components/AutoScreen';
 // import Map from './components/Map';
 // import YaMap from 'react-native-yamap';
@@ -45,7 +45,7 @@ export default function App() {
 
   return (
     <View style={styles.screen}>
-      {/* <View style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.title}>
           <Text style={styles.titleText}>Список ТС</Text>
         </View>
@@ -107,17 +107,33 @@ export default function App() {
           <MapView
             style={styles.map}
             initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: 55.78825,
+              longitude: 37.4324,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             }}
-          />
+          >
+            {autoData.map((item: Auto, key) => {
+              const coords = {
+                latitude: item.latitude,
+                longitude: item.longitude
+              };
+              let image = require('./assets/blue-marker.png');
+              if (item.category === 'Пассажирский') image = require('./assets/green-marker.png');
+              if (item.category === 'Спецтранспорт') image = require('./assets/red-marker.png');
+              return autoFilter[item.category] && <Marker
+                key={key}
+                coordinate={coords}
+                title={item.name}
+                image={image}
+              />;
+            })}
+          </MapView>
         </View>
-      </View> */}
-      <View style={styles.container}>
-        <AutoScreen auto={autoData[0]} />
       </View>
+      {/* <View style={styles.container}>
+        <AutoScreen auto={autoData[0]} />
+      </View> */}
       <StatusBar style="auto" />
     </View>
   );
@@ -164,10 +180,10 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   mapcontainer: {
-
+    width: '100%'
   },
   map: {
-    width: 300,
-    height: 300,
+    width: '100%',
+    height: 500,
   },
 });

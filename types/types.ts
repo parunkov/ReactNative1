@@ -2,8 +2,9 @@ type Auto = {
     name: string;
     driver: string;
     category: string;
-    color?: string;
     phone?: string;
+    latitude: number;
+    longitude: number;
 };
 
 type GreetingProps = {

@@ -1,26 +1,29 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "name": "ТС#1",
         "driver": "Сергей",
         "phone": "+79999999999",
         "category": "Грузовой",
-        "color": "blue"
+        "latitude": 55.78,
+        "longitude": 37.43
     },
     {
-        "id": "2",
+        "id": 2,
         "name": "ТС#2",
         "driver": "Иван",
         "phone": "+79999999999",
         "category": "Пассажирский",
-        "color": "red"
+        "latitude": 55.77,
+        "longitude": 37.42
     },
     {
-        "id": "2",
+        "id": 3,
         "name": "ТС#3",
         "driver": "Федор",
         "phone": "+79999999999",
         "category": "Спецтранспорт",
-        "color": "green"
+        "latitude": 55.79,
+        "longitude": 37.46
     }
 ]
