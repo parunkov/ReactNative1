@@ -12,7 +12,7 @@ import AutoScreen from './components/AutoScreen';
 
 // YaMap.init('63c7add9-7c2e-47de-9ad9-9b81d17c537f');
 
-console.log(data);
+// console.log(data);
 type Filter = {
   [key: string]: boolean;
 }
@@ -29,6 +29,7 @@ export default function App() {
   const [isCargoChecked, setCargoChecked] = useState(true);
   const [isPassengerChecked, setPassengerChecked] = useState(true);
   const [isSpecialChecked, setSpecialChecked] = useState(true);
+  const [isMapMode, setMapMode] = useState(false);
 
   // useEffect(() => {
   //   console.log(2222);
@@ -42,13 +43,29 @@ export default function App() {
   const onFilterApplyPress = () => {
     setFilterVisible(false);
   }
+  const onMapPress = () => {
+    setMapMode(true);
+  }
+  const onListPress = () => {
+    setMapMode(false);
+  }
 
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={styles.titleText}>Список ТС</Text>
+        <View style={styles.header}>
+          <View style={styles.headerItem}>
+            {!isMapMode && <Text style={styles.titleText}>Список ТС</Text>}
+            {isMapMode && <Button title={'Список ТС'} onPress={onListPress} />}
+          </View>
+          <View style={styles.headerItem}>
+            {!isMapMode && <Button title={'Карта'} onPress={onMapPress}/>}
+            {isMapMode && <Text style={styles.titleText}>Карта</Text>}
+          </View>
         </View>
+        {/* <View style={styles.title}>
+          <Text style={styles.titleText}>Список ТС</Text>
+        </View> */}
         {!isFilterVisible &&
           <View style={styles.button}>
             <Button title={'Фильтр'} onPress={onFilterPress} />
@@ -102,8 +119,8 @@ export default function App() {
               <Button title={'Применить'} onPress={onFilterApplyPress} />
             </View>
           </View>}
-        {autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem auto={item} key={key} />)}
-        <View style={styles.mapcontainer}>
+        {!isMapMode && autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem auto={item} key={key} />)}
+        {isMapMode && <View style={styles.mapcontainer}>
           <MapView
             style={styles.map}
             initialRegion={{
@@ -130,6 +147,7 @@ export default function App() {
             })}
           </MapView>
         </View>
+        }
       </View>
       {/* <View style={styles.container}>
         <AutoScreen auto={autoData[0]} />
@@ -149,13 +167,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
+  header: {
+    marginTop: 40,
+    marginBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '90%',
+    justifyContent: 'space-between',
+  },
+  headerItem: {
+    width: '48%',
+    height: '100%',
+    borderColor: 'rgb(33, 150, 243)',
+    borderWidth: 1,
+    textAlign: 'center',
+    borderRadius: 2,
+  },
   title: {
     marginBottom: 20,
     marginTop: 10,
   },
   titleText: {
-    fontSize: 20,
-    fontWeight: '700'
+    marginTop: 8,
+    fontSize: 14,
+    textTransform: 'uppercase',
+    fontWeight: '500',
+    color: 'rgb(33, 150, 243)',
   },
   filter: {
     width: '90%'
@@ -167,7 +204,8 @@ const styles = StyleSheet.create({
   filterButton: {
     marginTop: 10,
     marginBottom: 20,
-    width: '100%'
+    width: '100%',
+    borderRadius: 5,
   },
   section: {
     flexDirection: 'row',
