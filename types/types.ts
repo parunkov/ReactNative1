@@ -11,4 +11,11 @@ type GreetingProps = {
     auto: Auto;
 }
 
-export { Auto, GreetingProps };
+type AutoProps = {
+    auto: Auto;
+    key: number;
+    callback: () => void;
+}
+
+
+export { Auto, GreetingProps, AutoProps };

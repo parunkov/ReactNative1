@@ -7,10 +7,6 @@ import { Auto } from './types/types';
 import ListItem from './components/ListItem';
 import MapView, { Marker } from 'react-native-maps';
 import AutoScreen from './components/AutoScreen';
-// import Map from './components/Map';
-// import YaMap from 'react-native-yamap';
-
-// YaMap.init('63c7add9-7c2e-47de-9ad9-9b81d17c537f');
 
 // console.log(data);
 type Filter = {
@@ -30,6 +26,8 @@ export default function App() {
   const [isPassengerChecked, setPassengerChecked] = useState(true);
   const [isSpecialChecked, setSpecialChecked] = useState(true);
   const [isMapMode, setMapMode] = useState(false);
+  const [isAutoMode, setAutoMode] = useState(false);
+  const [autoIndex, setAuto] = useState(0);
 
   // useEffect(() => {
   //   console.log(2222);
@@ -49,17 +47,25 @@ export default function App() {
   const onListPress = () => {
     setMapMode(false);
   }
+  const onAutoPress = () => {
+    setAutoMode(true);
+    // setAuto(key);
+  }
+  const onReturnPress = () => {
+    setAutoMode(false);
+    console.log(77777);
+  }
 
   return (
     <View style={styles.screen}>
-      <View style={styles.container}>
+      {!isAutoMode && <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerItem}>
             {!isMapMode && <Text style={styles.titleText}>Список ТС</Text>}
             {isMapMode && <Button title={'Список ТС'} onPress={onListPress} />}
           </View>
           <View style={styles.headerItem}>
-            {!isMapMode && <Button title={'Карта'} onPress={onMapPress}/>}
+            {!isMapMode && <Button title={'Карта'} onPress={onMapPress} />}
             {isMapMode && <Text style={styles.titleText}>Карта</Text>}
           </View>
         </View>
@@ -119,7 +125,14 @@ export default function App() {
               <Button title={'Применить'} onPress={onFilterApplyPress} />
             </View>
           </View>}
-        {!isMapMode && autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem auto={item} key={key} />)}
+        {!isMapMode && autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem
+          auto={item}
+          key={key}
+          callback={() => {
+            setAuto(key);
+            onAutoPress();
+          }}
+        />)}
         {isMapMode && <View style={styles.mapcontainer}>
           <MapView
             style={styles.map}
@@ -148,10 +161,10 @@ export default function App() {
           </MapView>
         </View>
         }
-      </View>
-      {/* <View style={styles.container}>
-        <AutoScreen auto={autoData[0]} />
-      </View> */}
+      </View>}
+      {isAutoMode && <View style={styles.container}>
+        <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} />
+      </View>}
       <StatusBar style="auto" />
     </View>
   );
@@ -220,10 +233,11 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   mapcontainer: {
-    width: '100%'
+    width: '100%',
+    height: 500,
   },
   map: {
     width: '100%',
-    height: 500,
+    height: '100%',
   },
 });

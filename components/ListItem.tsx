@@ -1,11 +1,19 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { Auto, GreetingProps } from '../types/types';
+import { Auto, AutoProps } from '../types/types';
 
-const onPress = () => {
-    console.log(3333);
-};
 
-export default function ListItem({ auto }: GreetingProps) {
+export default function ListItem({ auto, key, callback }: AutoProps) {
+    console.log(callback);
+    
+    console.log(key);
+    
+    const onPress = () => {
+        console.log(3333);
+        console.log(key);
+        
+        callback();
+    };
+
     return (
         <Pressable style={styles.auto} onPress={onPress} >
             <Text style={styles.title}>{auto.name}</Text>
