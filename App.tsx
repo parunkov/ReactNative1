@@ -188,11 +188,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   titleText: {
+    width: '100%',
     marginTop: 8,
     fontSize: 14,
     textTransform: 'uppercase',
     fontWeight: '500',
     color: 'rgb(33, 150, 243)',
+    textAlign: 'center',
   },
   filter: {
     width: '90%'
