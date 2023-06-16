@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, Linking, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, Linking, Alert, Pressable, Image } from 'react-native';
 import { Auto, AutoScreenProps } from '../types/types';
 import Map from './Map';
 
@@ -25,19 +25,19 @@ export default function AutoScreen({ auto, callback, autoFilter }: AutoScreenPro
     return (
         <View style={styles.screen}>
             <View style={styles.titleContainer}>
-                <View>
-                    <Button title={'Назад'} onPress={onReturnPress} />
+                <View style={styles.return} >
+                    <Pressable style={styles.returnButton} onPress={onReturnPress}>
+                        <Image source={require('../assets/arrow.png')} />
+                    </Pressable>
                 </View>
-                <View style={styles.title}>
-                    <Text style={styles.titleText}>{auto.name}</Text>
-                </View>
+                <Text style={styles.titleText}>{auto.name}</Text>
             </View>
             <View style={styles.mapcontainer}>
-                <Map 
-                    autoData={[auto]} 
-                    autoFilter={autoFilter} 
-                    latitude={auto.latitude} 
-                    longitude={auto.longitude} 
+                <Map
+                    autoData={[auto]}
+                    autoFilter={autoFilter}
+                    latitude={auto.latitude}
+                    longitude={auto.longitude}
                 />
             </View>
             <View style={styles.container}>
@@ -71,21 +71,35 @@ const styles = StyleSheet.create({
     },
     titleContainer: {
         flex: 0,
-        flexDirection: 'row',
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
         width: '90%',
-        marginTop: 30,
+        marginTop: 40,
+        marginBottom: 20,
+        flexDirection: 'row',
+        textAlign: 'center'
+    },
+    return: {
+        width: 40,
+        height: 40,
+    },
+    returnButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        marginTop: 5,
     },
     title: {
+        alignSelf: 'stretch',
+        textAlign: 'center',
+        marginLeft: 30,
         marginBottom: 20,
         marginTop: 30,
+        backgroundColor: 'green',
     },
     titleText: {
         fontSize: 20,
         fontWeight: '700',
-
+        width: '80%',
+        textAlign: 'center',
     },
     button: {
         marginTop: 10,
@@ -94,5 +108,6 @@ const styles = StyleSheet.create({
     mapcontainer: {
         width: '100%',
         height: 300,
+        marginBottom: 10,
     },
 });

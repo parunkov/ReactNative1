@@ -25,5 +25,68 @@
         "category": "Спецтранспорт",
         "latitude": 55.79,
         "longitude": 37.46
+    },
+    {
+        "id": 4,
+        "name": "ТС#4",
+        "driver": "Сергей",
+        "phone": "+79999999999",
+        "category": "Грузовой",
+        "latitude": 55.78,
+        "longitude": 37.43
+    },
+    {
+        "id": 5,
+        "name": "ТС#5",
+        "driver": "Иван",
+        "phone": "+79999999999",
+        "category": "Пассажирский",
+        "latitude": 55.77,
+        "longitude": 37.42
+    },
+    {
+        "id": 6,
+        "name": "ТС#6",
+        "driver": "Федор",
+        "phone": "+79999999999",
+        "category": "Спецтранспорт",
+        "latitude": 55.79,
+        "longitude": 37.46
+    },
+    {
+        "id": 7,
+        "name": "ТС#7",
+        "driver": "Сергей",
+        "phone": "+79999999999",
+        "category": "Грузовой",
+        "latitude": 55.78,
+        "longitude": 37.43
+    },
+    {
+        "id": 8,
+        "name": "ТС#8",
+        "driver": "Иван",
+        "phone": "+79999999999",
+        "category": "Пассажирский",
+        "latitude": 55.77,
+        "longitude": 37.42
+    },
+    {
+        "id": 9,
+        "name": "ТС#9",
+        "driver": "Федор",
+        "phone": "+79999999999",
+        "category": "Спецтранспорт",
+        "latitude": 55.79,
+        "longitude": 37.46
+    },
+    {
+        "id": 10,
+        "name": "ТС#10",
+        "driver": "Сергей",
+        "phone": "+79999999999",
+        "category": "Грузовой",
+        "latitude": 55.78,
+        "longitude": 37.43
     }
 ]
