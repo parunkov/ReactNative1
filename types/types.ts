@@ -3,6 +3,7 @@ type Auto = {
     driver: string;
     category: string;
     color?: string;
+    phone?: string;
 };
 
 type GreetingProps = {
