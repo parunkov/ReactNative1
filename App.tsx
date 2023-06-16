@@ -6,12 +6,14 @@ import Checkbox from 'expo-checkbox';
 import { Auto } from './types/types';
 import ListItem from './components/ListItem';
 import MapView, { Marker } from 'react-native-maps';
+import Map from './components/Map';
 import AutoScreen from './components/AutoScreen';
+import { Filter } from './types/types';
 
 // console.log(data);
-type Filter = {
-  [key: string]: boolean;
-}
+// type Filter = {
+//   [key: string]: boolean;
+// }
 
 const autoData: Auto[] = data;
 
@@ -134,31 +136,7 @@ export default function App() {
           }}
         />)}
         {isMapMode && <View style={styles.mapcontainer}>
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: 55.78825,
-              longitude: 37.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-          >
-            {autoData.map((item: Auto, key) => {
-              const coords = {
-                latitude: item.latitude,
-                longitude: item.longitude
-              };
-              let image = require('./assets/blue-marker.png');
-              if (item.category === 'Пассажирский') image = require('./assets/green-marker.png');
-              if (item.category === 'Спецтранспорт') image = require('./assets/red-marker.png');
-              return autoFilter[item.category] && <Marker
-                key={key}
-                coordinate={coords}
-                title={item.name}
-                image={image}
-              />;
-            })}
-          </MapView>
+          <Map autoData={autoData} autoFilter={autoFilter} />
         </View>
         }
       </View>}

@@ -7,15 +7,18 @@ type Auto = {
     longitude: number;
 };
 
-type GreetingProps = {
-    auto: Auto;
-}
-
 type AutoProps = {
     auto: Auto;
     key: number;
     callback: () => void;
 }
 
+type Filter = {
+    [key: string]: boolean;
+}
+type MapProps = {
+    autoData: Auto[];
+    autoFilter: Filter;
+}
 
-export { Auto, GreetingProps, AutoProps };
+export { Auto, MapProps, AutoProps, Filter };
