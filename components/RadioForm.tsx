@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { RadioProps } from '../types/types';
 
-const Radio = ({ callback }: RadioProps) => {
-  const [checked, setChecked] = useState(0);
+const Radio = ({ callback, isRusLang }: RadioProps) => {
+  const initialChecked = isRusLang ? 0 : 1;
+  const [checked, setChecked] = useState(initialChecked);
   const lang = ['Русский', 'English'];
   return (
     <View>

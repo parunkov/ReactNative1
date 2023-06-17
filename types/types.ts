@@ -50,6 +50,7 @@ type SettingsScreenProps = {
 
 type RadioProps = {
     callback: (value: boolean) => void;
+    isRusLang: boolean;
 }
 
 export { Auto, MapProps, AutoProps, Filter, AutoScreenProps, FilterItemProps, PageHeaderProps, SettingsScreenProps, RadioProps };

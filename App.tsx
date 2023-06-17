@@ -11,9 +11,6 @@ import FilterItem from './components/FilterItem';
 import SettingsScreen from './components/SettingsScreen';
 
 // console.log(data);
-// type Filter = {
-//   [key: string]: boolean;
-// }
 
 const autoData: Auto[] = data;
 
@@ -63,7 +60,6 @@ export default function App() {
   }
   const onLangChange = (value: boolean) => {
     setLang(value);
-    console.log(value);
     
   }
 
@@ -72,12 +68,12 @@ export default function App() {
       {mode === 'main' && <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerItem}>
-            {!isMapMode && <Text style={styles.titleText}>Список</Text>}
-            {isMapMode && <Button title={'Список'} onPress={onListPress} />}
+            {!isMapMode && <Text style={styles.titleText}>{`${isRusLang ? 'Список' : 'List'}`}</Text>}
+            {isMapMode && <Button title={`${isRusLang ? 'Список' : 'List'}`} onPress={onListPress} />}
           </View>
           <View style={styles.headerItem}>
-            {!isMapMode && <Button title={'Карта'} onPress={onMapPress} />}
-            {isMapMode && <Text style={styles.titleText}>Карта</Text>}
+            {!isMapMode && <Button title={`${isRusLang ? 'Карта' : 'Map'}`} onPress={onMapPress} />}
+            {isMapMode && <Text style={styles.titleText}>{`${isRusLang ? 'Карта' : 'Map'}`}</Text>}
           </View>
           <Pressable style={styles.settingsButton} onPress={onSettingsPress}>
             <Image source={require('./assets/gear.png')} style={styles.settingsImage} />
@@ -85,30 +81,30 @@ export default function App() {
         </View>
         {!isFilterVisible &&
           <View style={styles.button}>
-            <Button title={'Фильтр'} onPress={onFilterPress} />
+            <Button title={`${isRusLang ? 'Фильтр' : 'Filter'}`} onPress={onFilterPress} />
           </View>
         }
         {isFilterVisible &&
           <View style={styles.filter}>
             <View>
               <FilterItem 
-                filterText='Грузовой' 
+                filterText={`${isRusLang ? 'Грузовой' : 'Cargo'}`}
                 filterValue={autoFilter['Грузовой']} 
                 callback={onFilterItemPress} 
               />
               <FilterItem 
-                filterText='Пассажирский' 
+                filterText={`${isRusLang ? 'Пассажирский' : 'Passenger'}`}
                 filterValue={autoFilter['Пассажирский']} 
                 callback={onFilterItemPress} 
               />
               <FilterItem 
-                filterText='Спецтранспорт' 
+                filterText={`${isRusLang ? 'Спецтранспорт' : 'Special'}`}
                 filterValue={autoFilter['Спецтранспорт']} 
                 callback={onFilterItemPress} 
               />
             </View>
             <View style={styles.filterButton}>
-              <Button title={'Применить'} onPress={onFilterApplyPress} />
+              <Button title={`${isRusLang ? 'Применить' : 'Apply'}`} onPress={onFilterApplyPress} />
             </View>
           </View>}
         {!isMapMode &&
