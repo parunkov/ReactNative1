@@ -1,12 +1,8 @@
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
-import { Auto, AutoProps } from '../types/types';
+import { PageHeaderProps } from '../types/types';
 
 
 export default function PageHeader({ text , callback }: PageHeaderProps) {
-    // const onPress = () => {
-    //     callback();
-    // };
-
     return (
         <View style={styles.titleContainer}>
             <View style={styles.return} >

@@ -37,4 +37,9 @@ type FilterItemProps = {
     callback: (filterText: string, value: boolean) => void;
 }
 
-export { Auto, MapProps, AutoProps, Filter, AutoScreenProps, FilterItemProps };
+type PageHeaderProps = {
+    text: string;
+    callback: () => void;
+}
+
+export { Auto, MapProps, AutoProps, Filter, AutoScreenProps, FilterItemProps, PageHeaderProps };

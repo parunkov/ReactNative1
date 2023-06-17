@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, Button, Linking, Alert, Pressable, Image } from 'react-native';
-import { Auto, AutoScreenProps } from '../types/types';
+import { StyleSheet, Text, View, Button, Linking, Alert } from 'react-native';
+import { AutoScreenProps } from '../types/types';
 import Map from './Map';
+import PageHeader from './PageHeader';
 
 export default function AutoScreen({ auto, callback, autoFilter }: AutoScreenProps) {
     const onCallPress = () => {
@@ -24,14 +25,7 @@ export default function AutoScreen({ auto, callback, autoFilter }: AutoScreenPro
 
     return (
         <View style={styles.screen}>
-            <View style={styles.titleContainer}>
-                <View style={styles.return} >
-                    <Pressable style={styles.returnButton} onPress={onReturnPress}>
-                        <Image source={require('../assets/arrow.png')} />
-                    </Pressable>
-                </View>
-                <Text style={styles.titleText}>{auto.name}</Text>
-            </View>
+            <PageHeader text={auto.name} callback={onReturnPress} />
             <View style={styles.mapcontainer}>
                 <Map
                     autoData={[auto]}
@@ -69,23 +63,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '90%',
     },
-    titleContainer: {
-        flex: 0,
-        width: '90%',
-        marginTop: 40,
-        marginBottom: 20,
-        flexDirection: 'row',
-        textAlign: 'center'
-    },
     return: {
         width: 40,
         height: 40,
-    },
-    returnButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        marginTop: 5,
     },
     title: {
         alignSelf: 'stretch',
@@ -94,12 +74,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 30,
         backgroundColor: 'green',
-    },
-    titleText: {
-        fontSize: 20,
-        fontWeight: '700',
-        width: '80%',
-        textAlign: 'center',
     },
     button: {
         marginTop: 10,
