@@ -6,15 +6,15 @@ import Radio from './RadioForm';
 console.log(Radio);
 
 
-export default function SettingsScreen({ callback }: SettingsScreenProps) {
+export default function SettingsScreen({ callback, change, isRusLang }: SettingsScreenProps) {
     return (
         <View style={styles.screen}>
-            <PageHeader text={'Настройки'} callback={callback} />
+            <PageHeader text={isRusLang ? 'Настройки' : 'Settings'} callback={callback} />
             <View style={styles.container}>
                 <Text style={styles.text}>Язык:</Text>
             </View>
             <View style={styles.container}>
-                 <Radio />
+                 <Radio callback={change} />
             </View>
         </View>
     );

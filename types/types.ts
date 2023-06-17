@@ -44,6 +44,12 @@ type PageHeaderProps = {
 
 type SettingsScreenProps = {
     callback: () => void;
+    change: (value: boolean) => void;
+    isRusLang: boolean;
 }
 
-export { Auto, MapProps, AutoProps, Filter, AutoScreenProps, FilterItemProps, PageHeaderProps, SettingsScreenProps };
+type RadioProps = {
+    callback: (value: boolean) => void;
+}
+
+export { Auto, MapProps, AutoProps, Filter, AutoScreenProps, FilterItemProps, PageHeaderProps, SettingsScreenProps, RadioProps };

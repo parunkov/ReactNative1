@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import { RadioProps } from '../types/types';
 
-const Radio = () => {
+const Radio = ({ callback }: RadioProps) => {
   const [checked, setChecked] = useState(0);
   const lang = ['Русский', 'English'];
   return (
@@ -22,8 +23,7 @@ const Radio = () => {
                 <TouchableOpacity
                   onPress={() => {
                     setChecked(key);
-                    console.log(lang[checked]);
-                    
+                    callback(key === 0);                    
                   }}
                   style={styles.radio}>
                   <Image

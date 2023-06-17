@@ -27,6 +27,7 @@ export default function App() {
   const [isMapMode, setMapMode] = useState(false);
   const [mode, setMode] = useState('main');
   const [autoIndex, setAuto] = useState(0);
+  const [isRusLang, setLang] = useState(true);
 
   // useEffect(() => {
   //   console.log(2222);
@@ -59,6 +60,11 @@ export default function App() {
     const newFilter = {...autoFilter};
     newFilter[filterText] = value;
     setFilter(newFilter);
+  }
+  const onLangChange = (value: boolean) => {
+    setLang(value);
+    console.log(value);
+    
   }
 
   return (
@@ -126,7 +132,7 @@ export default function App() {
         <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} autoFilter={autoFilter} />
       </View>}
       {mode === 'settings' && <View style={styles.container}>
-        <SettingsScreen callback={onReturnPress} />
+        <SettingsScreen callback={onReturnPress} change={onLangChange} isRusLang={isRusLang} />
       </View>}
       <StatusBar style="auto" />
     </View>
