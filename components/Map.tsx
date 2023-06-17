@@ -10,8 +10,8 @@ export default function Map({ autoData, autoFilter, latitude, longitude }: MapPr
             initialRegion={{
                 latitude,
                 longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+                latitudeDelta: 0.2,
+                longitudeDelta: 0.2,
             }}
         >
             {autoData.map((item: Auto, key) => {

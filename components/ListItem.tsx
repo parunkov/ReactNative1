@@ -4,9 +4,6 @@ import { Auto, AutoProps } from '../types/types';
 
 export default function ListItem({ auto, key, callback }: AutoProps) {
     const onPress = () => {
-        console.log(3333);
-        console.log(key);
-        
         callback();
     };
 

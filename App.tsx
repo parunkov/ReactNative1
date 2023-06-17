@@ -9,6 +9,7 @@ import MapView, { Marker } from 'react-native-maps';
 import Map from './components/Map';
 import AutoScreen from './components/AutoScreen';
 import { Filter } from './types/types';
+import FilterItem from './components/FilterItem';
 
 // console.log(data);
 // type Filter = {
@@ -24,9 +25,6 @@ export default function App() {
     'Пассажирский': true,
     'Спецтранспорт': true,
   });
-  const [isCargoChecked, setCargoChecked] = useState(true);
-  const [isPassengerChecked, setPassengerChecked] = useState(true);
-  const [isSpecialChecked, setSpecialChecked] = useState(true);
   const [isMapMode, setMapMode] = useState(false);
   const [isAutoMode, setAutoMode] = useState(false);
   const [autoIndex, setAuto] = useState(0);
@@ -55,23 +53,25 @@ export default function App() {
   const onReturnPress = () => {
     setAutoMode(false);
   }
+  const onFilterItemPress = (filterText: string, value: boolean) => {
+    const newFilter = {...autoFilter};
+    newFilter[filterText] = value;
+    setFilter(newFilter);
+  }
 
   return (
     <View style={styles.screen}>
       {!isAutoMode && <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerItem}>
-            {!isMapMode && <Text style={styles.titleText}>Список ТС</Text>}
-            {isMapMode && <Button title={'Список ТС'} onPress={onListPress} />}
+            {!isMapMode && <Text style={styles.titleText}>Список</Text>}
+            {isMapMode && <Button title={'Список'} onPress={onListPress} />}
           </View>
           <View style={styles.headerItem}>
             {!isMapMode && <Button title={'Карта'} onPress={onMapPress} />}
             {isMapMode && <Text style={styles.titleText}>Карта</Text>}
           </View>
         </View>
-        {/* <View style={styles.title}>
-          <Text style={styles.titleText}>Список ТС</Text>
-        </View> */}
         {!isFilterVisible &&
           <View style={styles.button}>
             <Button title={'Фильтр'} onPress={onFilterPress} />
@@ -79,41 +79,22 @@ export default function App() {
         }
         {isFilterVisible &&
           <View style={styles.filter}>
-            <View style={styles.section}>
-              <Checkbox
-                style={styles.checkbox}
-                value={isCargoChecked}
-                onValueChange={(value) => {
-                  setCargoChecked(value);
-                  autoFilter['Грузовой'] = value;
-                }}
-                color={isCargoChecked ? 'rgb(33, 150, 243)' : undefined}
+            <View>
+              <FilterItem 
+                filterText='Грузовой' 
+                filterValue={autoFilter['Грузовой']} 
+                callback={onFilterItemPress} 
               />
-              <Text style={styles.paragraph}>Грузовой</Text>
-            </View>
-            <View style={styles.section}>
-              <Checkbox
-                style={styles.checkbox}
-                value={isPassengerChecked}
-                onValueChange={(value) => {
-                  setPassengerChecked(value);
-                  autoFilter['Пассажирский'] = value;
-                }}
-                color={isPassengerChecked ? 'rgb(33, 150, 243)' : undefined}
+              <FilterItem 
+                filterText='Пассажирский' 
+                filterValue={autoFilter['Пассажирский']} 
+                callback={onFilterItemPress} 
               />
-              <Text style={styles.paragraph}>Пассажирский</Text>
-            </View>
-            <View style={styles.section}>
-              <Checkbox
-                style={styles.checkbox}
-                value={isSpecialChecked}
-                onValueChange={(value) => {
-                  setSpecialChecked(value);
-                  autoFilter['Спецтранспорт'] = value;
-                }}
-                color={isSpecialChecked ? 'rgb(33, 150, 243)' : undefined}
+              <FilterItem 
+                filterText='Спецтранспорт' 
+                filterValue={autoFilter['Спецтранспорт']} 
+                callback={onFilterItemPress} 
               />
-              <Text style={styles.paragraph}>Спецтранспорт</Text>
             </View>
             <View style={styles.filterButton}>
               <Button title={'Применить'} onPress={onFilterApplyPress} />

@@ -31,4 +31,10 @@ type MapProps = {
     longitude: number;
 }
 
-export { Auto, MapProps, AutoProps, Filter, AutoScreenProps };
+type FilterItemProps = {
+    filterText: string;
+    filterValue: boolean;
+    callback: (filterText: string, value: boolean) => void;
+}
+
+export { Auto, MapProps, AutoProps, Filter, AutoScreenProps, FilterItemProps };

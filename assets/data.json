@@ -32,8 +32,8 @@
         "driver": "Сергей",
         "phone": "+79999999999",
         "category": "Грузовой",
-        "latitude": 55.78,
-        "longitude": 37.43
+        "latitude": 55.72,
+        "longitude": 37.42
     },
     {
         "id": 5,
@@ -41,8 +41,8 @@
         "driver": "Иван",
         "phone": "+79999999999",
         "category": "Пассажирский",
-        "latitude": 55.77,
-        "longitude": 37.42
+        "latitude": 55.71,
+        "longitude": 37.35
     },
     {
         "id": 6,
@@ -50,8 +50,8 @@
         "driver": "Федор",
         "phone": "+79999999999",
         "category": "Спецтранспорт",
-        "latitude": 55.79,
-        "longitude": 37.46
+        "latitude": 55.75,
+        "longitude": 37.32
     },
     {
         "id": 7,
@@ -59,8 +59,8 @@
         "driver": "Сергей",
         "phone": "+79999999999",
         "category": "Грузовой",
-        "latitude": 55.78,
-        "longitude": 37.43
+        "latitude": 55.80,
+        "longitude": 37.52
     },
     {
         "id": 8,
@@ -68,8 +68,8 @@
         "driver": "Иван",
         "phone": "+79999999999",
         "category": "Пассажирский",
-        "latitude": 55.77,
-        "longitude": 37.42
+        "latitude": 55.79,
+        "longitude": 37.34
     },
     {
         "id": 9,
@@ -77,8 +77,8 @@
         "driver": "Федор",
         "phone": "+79999999999",
         "category": "Спецтранспорт",
-        "latitude": 55.79,
-        "longitude": 37.46
+        "latitude": 55.77,
+        "longitude": 37.32
     },
     {
         "id": 10,
@@ -86,7 +86,7 @@
         "driver": "Сергей",
         "phone": "+79999999999",
         "category": "Грузовой",
-        "latitude": 55.78,
-        "longitude": 37.43
+        "latitude": 55.75,
+        "longitude": 37.36
     }
 ]
