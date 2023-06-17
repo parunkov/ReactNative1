@@ -2,10 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import data from './assets/data.json';
-import Checkbox from 'expo-checkbox';
 import { Auto } from './types/types';
 import ListItem from './components/ListItem';
-import MapView, { Marker } from 'react-native-maps';
 import Map from './components/Map';
 import AutoScreen from './components/AutoScreen';
 import { Filter } from './types/types';
@@ -26,7 +24,7 @@ export default function App() {
     'Спецтранспорт': true,
   });
   const [isMapMode, setMapMode] = useState(false);
-  const [isAutoMode, setAutoMode] = useState(false);
+  const [mode, setMode] = useState('main');
   const [autoIndex, setAuto] = useState(0);
 
   // useEffect(() => {
@@ -48,10 +46,10 @@ export default function App() {
     setMapMode(false);
   }
   const onAutoPress = () => {
-    setAutoMode(true);
+    setMode('auto');
   }
   const onReturnPress = () => {
-    setAutoMode(false);
+    setMode('main');
   }
   const onFilterItemPress = (filterText: string, value: boolean) => {
     const newFilter = {...autoFilter};
@@ -61,7 +59,7 @@ export default function App() {
 
   return (
     <View style={styles.screen}>
-      {!isAutoMode && <View style={styles.container}>
+      {mode === 'main' && <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerItem}>
             {!isMapMode && <Text style={styles.titleText}>Список</Text>}
@@ -117,7 +115,7 @@ export default function App() {
         </View>
         }
       </View>}
-      {isAutoMode && <View style={styles.container}>
+      {mode === 'auto' && <View style={styles.container}>
         <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} autoFilter={autoFilter} />
       </View>}
       <StatusBar style="auto" />
