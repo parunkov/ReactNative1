@@ -42,4 +42,8 @@ type PageHeaderProps = {
     callback: () => void;
 }
 
-export { Auto, MapProps, AutoProps, Filter, AutoScreenProps, FilterItemProps, PageHeaderProps };
+type SettingsScreenProps = {
+    callback: () => void;
+}
+
+export { Auto, MapProps, AutoProps, Filter, AutoScreenProps, FilterItemProps, PageHeaderProps, SettingsScreenProps };

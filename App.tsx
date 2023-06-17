@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, Pressable, ScrollView, StyleSheet, Text, View, Image } from 'react-native';
 import data from './assets/data.json';
 import { Auto } from './types/types';
 import ListItem from './components/ListItem';
@@ -8,6 +8,7 @@ import Map from './components/Map';
 import AutoScreen from './components/AutoScreen';
 import { Filter } from './types/types';
 import FilterItem from './components/FilterItem';
+import SettingsScreen from './components/SettingsScreen';
 
 // console.log(data);
 // type Filter = {
@@ -48,6 +49,9 @@ export default function App() {
   const onAutoPress = () => {
     setMode('auto');
   }
+  const onSettingsPress = () => {
+    setMode('settings')
+  }
   const onReturnPress = () => {
     setMode('main');
   }
@@ -69,6 +73,9 @@ export default function App() {
             {!isMapMode && <Button title={'Карта'} onPress={onMapPress} />}
             {isMapMode && <Text style={styles.titleText}>Карта</Text>}
           </View>
+          <Pressable style={styles.settingsButton} onPress={onSettingsPress}>
+            <Image source={require('./assets/gear.png')} style={styles.settingsImage} />
+          </Pressable>
         </View>
         {!isFilterVisible &&
           <View style={styles.button}>
@@ -118,6 +125,9 @@ export default function App() {
       {mode === 'auto' && <View style={styles.container}>
         <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} autoFilter={autoFilter} />
       </View>}
+      {mode === 'settings' && <View style={styles.container}>
+        <SettingsScreen callback={onReturnPress} />
+      </View>}
       <StatusBar style="auto" />
     </View>
   );
@@ -126,7 +136,6 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    // overflow: 'visible',
   },
   container: {
     flex: 1,
@@ -143,12 +152,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   headerItem: {
-    width: '48%',
+    width: '40%',
     height: '100%',
     borderColor: 'rgb(33, 150, 243)',
     borderWidth: 1,
     textAlign: 'center',
     borderRadius: 2,
+  },
+  settingsButton: {
+    width: '15%',
+    height: '100%',
+  },
+  settingsImage: {
+    marginLeft: 'auto',
+    height: 43,
+    width: 43,
   },
   title: {
     marginBottom: 20,
@@ -175,16 +193,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '100%',
     borderRadius: 5,
-  },
-  section: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  paragraph: {
-    fontSize: 15,
-  },
-  checkbox: {
-    margin: 8,
   },
   listContainer: {
     width: '90%',
