@@ -7,10 +7,6 @@ export default function AutoScreen({ auto, callback, autoFilter }: AutoScreenPro
     const onCallPress = () => {
         Linking.openURL(`tel:${auto.phone}`);
     };
-    const onReturnPress = () => {
-        callback();
-    }
-
     const sendMsg = () => {
         const URL = `whatsapp://send?text=Добрый день, подскажите пожалуйста, какой номер заказа у вас сейчас в работе&phone=${auto.phone}`;
 
@@ -25,7 +21,7 @@ export default function AutoScreen({ auto, callback, autoFilter }: AutoScreenPro
 
     return (
         <View style={styles.screen}>
-            <PageHeader text={auto.name} callback={onReturnPress} />
+            <PageHeader text={auto.name} callback={callback} />
             <View style={styles.mapcontainer}>
                 <Map
                     autoData={[auto]}
