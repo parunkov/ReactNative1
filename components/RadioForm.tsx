@@ -15,7 +15,7 @@ const Radio = ({ callback }: RadioProps) => {
                 <TouchableOpacity style={styles.radio}>
                   <Image
                     style={styles.img}
-                    source={require('../assets/green-marker.png')}
+                    source={require('../assets/full.png')}
                   />
                   <Text style={styles.text}>{lang}</Text>
                 </TouchableOpacity>
@@ -28,7 +28,7 @@ const Radio = ({ callback }: RadioProps) => {
                   style={styles.radio}>
                   <Image
                     style={styles.img}
-                    source={require('../assets/red-marker.png')}
+                    source={require('../assets/empty.png')}
                   />
                   <Text style={styles.text}>{lang}</Text>
                 </TouchableOpacity>
@@ -37,7 +37,7 @@ const Radio = ({ callback }: RadioProps) => {
           );
         })}
       </View>
-      <Text>{lang[checked]}</Text>
+      {/* <Text>{lang[checked]}</Text> */}
     </View>
   );
 };
