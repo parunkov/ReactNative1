@@ -14,6 +14,7 @@ type Filter = {
 type AutoProps = {
     auto: Auto;
     key: number;
+    isRusLang: boolean;
     callback: () => void;
 }
 

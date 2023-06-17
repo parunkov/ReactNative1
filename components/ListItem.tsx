@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { Auto, AutoProps } from '../types/types';
+import { AutoProps } from '../types/types';
 
 
-export default function ListItem({ auto, key, callback }: AutoProps) {
+export default function ListItem({ auto, isRusLang, callback }: AutoProps) {
     const onPress = () => {
         callback();
     };
@@ -10,8 +10,8 @@ export default function ListItem({ auto, key, callback }: AutoProps) {
     return (
         <Pressable style={styles.auto} onPress={onPress} >
             <Text style={styles.title}>{auto.name}</Text>
-            <Text>Водитель: {auto.driver}</Text>
-            <Text>Категория: {auto.category}</Text>
+            <Text>{`${isRusLang ? 'Водитель' : 'Driver'}`}: {auto.driver}</Text>
+            <Text>{`${isRusLang ? 'Категория' : 'Category'}`}: {auto.category}</Text>
         </Pressable>
     );
 }

@@ -112,6 +112,7 @@ export default function App() {
             {autoData.map((item: Auto, key) => autoFilter[item.category] && <ListItem
               auto={item}
               key={key}
+              isRusLang={isRusLang}
               callback={() => {
                 setAuto(key);
                 onAutoPress();
