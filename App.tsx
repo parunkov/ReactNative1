@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgb(33, 150, 243)',
     borderWidth: 1,
     textAlign: 'center',
-    borderRadius: 2,
+    borderRadius: 3,
   },
   settingsButton: {
     width: '15%',
@@ -184,8 +184,8 @@ const styles = StyleSheet.create({
   },
   settingsImage: {
     marginLeft: 'auto',
-    height: 43,
-    width: 43,
+    height: 37,
+    width: 37,
   },
   title: {
     marginBottom: 20,
