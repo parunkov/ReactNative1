@@ -12,10 +12,10 @@ export default function AutoScreen({ auto, callback, autoFilter, isRusLang }: Au
 
         Linking.openURL(URL)
             .then((data) => {
-                console.log('WhatsApp Opened');
+                // console.log('WhatsApp Opened');
             })
             .catch(() => {
-                Alert.alert('Make sure Whatsapp installed on your device');
+                Alert.alert(isRusLang ? 'Установите Whatsapp для отправки сообщения' : 'Make sure Whatsapp installed on your device');
             });
     };
 
