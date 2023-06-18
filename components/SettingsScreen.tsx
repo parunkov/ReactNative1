@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, Linking, Alert } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SettingsScreenProps } from '../types/types';
 import PageHeader from './PageHeader';
 import Radio from './RadioForm';

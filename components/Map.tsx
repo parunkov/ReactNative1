@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { Auto, MapProps, Filter } from '../types/types';
+import { StyleSheet } from 'react-native';
+import { Auto, MapProps } from '../types/types';
 import MapView, { Marker } from 'react-native-maps';
 
 

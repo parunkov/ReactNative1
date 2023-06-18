@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Pressable, ScrollView, StyleSheet, Text, View, Image } from 'react-native';
 import data from './assets/data.json';
 import { Auto } from './types/types';
@@ -9,8 +9,6 @@ import AutoScreen from './components/AutoScreen';
 import { Filter } from './types/types';
 import FilterItem from './components/FilterItem';
 import SettingsScreen from './components/SettingsScreen';
-
-// console.log(data);
 
 const autoData: Auto[] = data;
 
@@ -25,11 +23,6 @@ export default function App() {
   const [mode, setMode] = useState('main');
   const [autoIndex, setAuto] = useState(0);
   const [isRusLang, setLang] = useState(true);
-
-  // useEffect(() => {
-  //   console.log(2222);
-
-  // });
 
   const onFilterPress = () => {
     setFilterVisible(true);
