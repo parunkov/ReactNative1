@@ -184,8 +184,8 @@ const styles = StyleSheet.create({
   },
   settingsImage: {
     marginLeft: 'auto',
-    height: 37,
-    width: 37,
+    flex: 1,
+    resizeMode: 'contain'
   },
   title: {
     marginBottom: 20,
