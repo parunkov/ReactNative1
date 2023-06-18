@@ -3,7 +3,7 @@ import { AutoScreenProps } from '../types/types';
 import Map from './Map';
 import PageHeader from './PageHeader';
 
-export default function AutoScreen({ auto, callback, autoFilter }: AutoScreenProps) {
+export default function AutoScreen({ auto, callback, autoFilter, isRusLang }: AutoScreenProps) {
     const onCallPress = () => {
         Linking.openURL(`tel:${auto.phone}`);
     };
@@ -21,24 +21,25 @@ export default function AutoScreen({ auto, callback, autoFilter }: AutoScreenPro
 
     return (
         <View style={styles.screen}>
-            <PageHeader text={auto.name} callback={callback} />
+            <PageHeader text={isRusLang ? auto.name : auto.nameEng} callback={callback} />
             <View style={styles.mapcontainer}>
                 <Map
                     autoData={[auto]}
                     autoFilter={autoFilter}
                     latitude={auto.latitude}
                     longitude={auto.longitude}
+                    isRusLang={isRusLang}
                 />
             </View>
             <View style={styles.container}>
-                <Text>Водитель: {auto.driver}</Text>
-                <Text>Категория: {auto.category}</Text>
-                <Text>Телефон: {auto.phone}</Text>
+                <Text>{`${isRusLang ? 'Водитель' : 'Driver'}`}: {isRusLang ? auto.driver : auto.driverEng}</Text>
+                <Text>{`${isRusLang ? 'Категория' : 'Category'}`}: {isRusLang ? auto.category : auto.categoryEng}</Text>
+                <Text>{`${isRusLang ? 'Телефон' : 'Phone'}`}: {auto.phone}</Text>
                 <View style={styles.button}>
-                    <Button title={'Позвонить'} onPress={onCallPress}></Button>
+                    <Button title={isRusLang ? 'Позвонить' : 'Call'} onPress={onCallPress}></Button>
                 </View>
                 <View style={styles.button}>
-                    <Button title={'Написать'} onPress={sendMsg}></Button>
+                    <Button title={isRusLang ? 'Написать' : 'Send'} onPress={sendMsg}></Button>
                 </View>
             </View>
         </View>

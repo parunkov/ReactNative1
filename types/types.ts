@@ -25,6 +25,7 @@ type AutoScreenProps = {
     auto: Auto;
     key: number;
     autoFilter: Filter;
+    isRusLang: boolean;
     callback: () => void;
 }
 
@@ -33,6 +34,7 @@ type MapProps = {
     autoFilter: Filter;
     latitude: number;
     longitude: number;
+    isRusLang: boolean;
 }
 
 type FilterItemProps = {

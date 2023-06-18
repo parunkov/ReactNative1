@@ -3,7 +3,7 @@ import { Auto, MapProps, Filter } from '../types/types';
 import MapView, { Marker } from 'react-native-maps';
 
 
-export default function Map({ autoData, autoFilter, latitude, longitude }: MapProps) {
+export default function Map({ autoData, autoFilter, latitude, longitude, isRusLang }: MapProps) {
     return (
         <MapView
             style={styles.map}
@@ -25,7 +25,7 @@ export default function Map({ autoData, autoFilter, latitude, longitude }: MapPr
                 return autoFilter[item.category] && <Marker
                     key={key}
                     coordinate={coords}
-                    title={item.name}
+                    title={isRusLang ? item.name : item.nameEng}
                     image={image}
                 />;
             })}

@@ -54,8 +54,12 @@ export default function App() {
     setMode('main');
   }
   const onFilterItemPress = (filterText: string, value: boolean) => {
+    let newFilterText = filterText;
+    if (filterText === 'Cargo') newFilterText = 'Грузовой';
+    if (filterText === 'Passenger') newFilterText = 'Пассажирский';
+    if (filterText === 'Special') newFilterText = 'Спецтранспорт';
     const newFilter = {...autoFilter};
-    newFilter[filterText] = value;
+    newFilter[newFilterText] = value;
     setFilter(newFilter);
   }
   const onLangChange = (value: boolean) => {
@@ -121,12 +125,24 @@ export default function App() {
             }
           </ScrollView>}
         {isMapMode && <View style={styles.mapcontainer}>
-          <Map autoData={autoData} autoFilter={autoFilter} latitude={55.78} longitude={37.43} />
+          <Map 
+            autoData={autoData} 
+            autoFilter={autoFilter} 
+            latitude={55.78} 
+            longitude={37.43} 
+            isRusLang={isRusLang} 
+          />
         </View>
         }
       </View>}
       {mode === 'auto' && <View style={styles.container}>
-        <AutoScreen auto={autoData[autoIndex]} key={autoIndex} callback={onReturnPress} autoFilter={autoFilter} />
+        <AutoScreen 
+          auto={autoData[autoIndex]} 
+          key={autoIndex} 
+          callback={onReturnPress} 
+          autoFilter={autoFilter} 
+          isRusLang={isRusLang}
+        />
       </View>}
       {mode === 'settings' && <View style={styles.container}>
         <SettingsScreen callback={onReturnPress} change={onLangChange} isRusLang={isRusLang} />
