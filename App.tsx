@@ -73,9 +73,7 @@ export default function App() {
         <View style={styles.header}>
           <View style={styles.headerItem}>
             {!isMapMode && <Text style={styles.titleText}>{`${isRusLang ? 'Список' : 'List'}`}</Text>}
-            {isMapMode && <Pressable onPress={onListPress}>
-              <Text>{`${isRusLang ? 'Список' : 'List'}`}</Text>
-            </Pressable>}
+            {isMapMode && <Button title={`${isRusLang ? 'Список' : 'List'}`} onPress={onListPress} />}
           </View>
           <View style={styles.headerItem}>
             {!isMapMode && <Button title={`${isRusLang ? 'Карта' : 'Map'}`} onPress={onMapPress} />}
