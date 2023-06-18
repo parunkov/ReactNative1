@@ -9,9 +9,9 @@ export default function ListItem({ auto, isRusLang, callback }: AutoProps) {
 
     return (
         <Pressable style={styles.auto} onPress={onPress} >
-            <Text style={styles.title}>{auto.name}</Text>
-            <Text>{`${isRusLang ? 'Водитель' : 'Driver'}`}: {auto.driver}</Text>
-            <Text>{`${isRusLang ? 'Категория' : 'Category'}`}: {auto.category}</Text>
+            <Text style={styles.title}>{isRusLang ? auto.name : auto.nameEng}</Text>
+            <Text>{`${isRusLang ? 'Водитель' : 'Driver'}`}: {isRusLang ? auto.driver : auto.driverEng}</Text>
+            <Text>{`${isRusLang ? 'Категория' : 'Category'}`}: {isRusLang ? auto.category : auto.categoryEng}</Text>
         </Pressable>
     );
 }

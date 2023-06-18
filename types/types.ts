@@ -1,10 +1,13 @@
 type Auto = {
     name: string;
+    nameEng: string;
     driver: string;
     category: string;
     phone?: string;
     latitude: number;
     longitude: number;
+    driverEng: string;
+    categoryEng: string;
 };
 
 type Filter = {
